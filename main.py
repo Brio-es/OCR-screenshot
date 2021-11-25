@@ -1,6 +1,7 @@
 import pyautogui as au
 import keyboard as kb
 import pytesseract as tess
+import pyperclip as pc
 from PIL import Image
 
 tess.pytesseract.tesseract_cmd = r'C:\Users\cesar\Documents\Screen_python\Tesseract-OCR\tesseract.exe'
@@ -24,6 +25,7 @@ def select_key():
         prefered_key = "Bloq Mayus"
 
     print(prefered_key)
+    print("------------------------------------")
 
 
 def screen():
@@ -44,7 +46,7 @@ def screenshot(a, b, c, d):
     y = min(l2)
     y1 = max(l2)-min(l2)
     au.screenshot("reference.png", region=(x,y,x1,y1))
-    print("screen shot done")
+    print("OCR done \nText below was copied to the clipboard\n------------------------------------")
     # Takes the screenshot
 
 
@@ -52,6 +54,8 @@ def ocr():
     img = Image.open('reference.png')
     text = tess.image_to_string(img)
     print(text)
+    pc.copy(text)
+    print("------------------------------------")
     # Processes the img to text
 
 def main():
